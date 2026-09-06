@@ -1,0 +1,16 @@
+version: 2.1
+
+jobs:
+  build:
+    macos:
+      xcode: 15.0.0
+    steps:
+      - checkout
+      - run:
+          name: Build kext
+          command: xcodebuild -project Ath9kSonoma.xcodeproj -target Ath9kSonoma -configuration Debug -sdk macosx14.0
+
+workflows:
+  build-on-push:
+    jobs:
+      - build
